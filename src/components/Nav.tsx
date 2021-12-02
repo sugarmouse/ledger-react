@@ -7,6 +7,7 @@ import Icon from "./Icon";
 const NavWrapper = styled.nav`
   line-height: 24px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  background: #fff;
 
 
   > ul {
@@ -25,6 +26,7 @@ const NavWrapper = styled.nav`
         align-items: center;
 
         .icon {
+          fill: #333;
           width: 24px;
           height: 24px;
         }
