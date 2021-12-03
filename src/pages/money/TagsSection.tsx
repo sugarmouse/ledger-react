@@ -37,32 +37,36 @@ const Wrapper = styled.section`
   }
 `;
 type Props = {
-  value: string[];
-  onChange:(tags:string[]) => void
+  value: number[];
+  onChange:(value:number[]) => void
 
 }
 const TagsSection: React.FunctionComponent<Props> = (props) => {
-  const {tags, setTags} = useTags()
-  const selectedTags = props.value;
+
+  const {tags, setTags} = useTags(); //传入tags数据 {id: number, name: string}
+  const selectedTagIds = props.value;
+  //新增标签
   const onAddTag =()=>{
     const name = window.prompt('新增的标签名为：');
     if (name !== null){
-      setTags([...tags, name]);
+      setTags([...tags, {id: Math.random(), name: name}]);
     }
   };
-  const onToggleTag=(tag:string)=>{
-    if(selectedTags.includes(tag)){
-      props.onChange(selectedTags.filter(val=>val!==tag));
+
+  const onToggleTag=(tagId:number)=>{
+    if(selectedTagIds.includes(tagId)){
+      props.onChange(selectedTagIds.filter(val=>val!==tagId));
     }else{
-      props.onChange([...selectedTags, tag]);
+      props.onChange([...selectedTagIds, tagId]);
     }
   };
+
   return (
     <Wrapper>
       <ul>
-        {tags.map(tag=><li key={tag} onClick={
-          ()=>onToggleTag(tag)
-        } className={selectedTags.includes(tag)?'selected':''}>{tag}</li>)}
+        {tags.map(tag=><li key={tag.id} onClick={
+          ()=>onToggleTag(tag.id)
+        } className={selectedTagIds.includes(tag.id)?'selected':''}>{tag.name}</li>)}
       </ul>
       <button onClick={onAddTag} >新增标签</button>
     </Wrapper>
