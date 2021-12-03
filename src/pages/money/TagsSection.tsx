@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React from "react";
+import {useTags} from "../../useTags";
 
 const Wrapper = styled.section`
   background: #fff;
@@ -41,7 +42,7 @@ type Props = {
 
 }
 const TagsSection: React.FunctionComponent<Props> = (props) => {
-  const [tags, setTags] = useState<string[]>(['衣','食','住','行']);
+  const {tags, setTags} = useTags()
   const selectedTags = props.value;
   const onAddTag =()=>{
     const name = window.prompt('新增的标签名为：');

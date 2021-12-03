@@ -2,9 +2,10 @@ import {HashRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import React from 'react';
 import Money from "pages/Money";
 import Statistics from "pages/Statistics";
-import Tag from "pages/Tag";
+import {Tags} from "pages/Tags";
 import NotMatch from "pages/NotMatch";
 import styled from "styled-components";
+import {EditTag} from "./pages/EidtTag";
 
 const AppWrapper = styled.div`
   color: #333;
@@ -16,8 +17,11 @@ function App() {
     <AppWrapper>
       <Router>
         <Switch>
-          <Route path="/tags">
-            <Tag/>
+          <Route exact path="/tags">
+            <Tags/>
+          </Route>
+          <Route path="/tags/:tag">
+            <EditTag/>
           </Route>
           <Route path="/money">
             <Money/>
@@ -35,4 +39,4 @@ function App() {
   );
 }
 
-export default App;
+export  {App};

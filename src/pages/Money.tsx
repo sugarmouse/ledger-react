@@ -7,8 +7,6 @@ import {TagsSection} from "./money/TagsSection";
 import {useState} from "react";
 
 
-
-
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
@@ -17,48 +15,35 @@ const MyLayout = styled(Layout)`
 
 function Money() {
 
-  type Category = '-'|'+';
+  type Category = '-' | '+';
   const [selected, setSelected] = useState({
-    tags:[] as string[],
-    note:'',
+    tags: [] as string[],
+    note: '',
     category: '-' as Category,
     amount: 0
   })
 
+  function onChange(obj: Partial<typeof selected>) {
+    setSelected({
+      ...selected,
+      ...obj
+    })
+  }
+
   return (
     <MyLayout>
-      <div>{selected.amount}</div>
-      <TagsSection value= {selected.tags}
-                   onChange={(tags)=>{
-                     setSelected({
-                       ...selected,
-                       tags: tags
-                     })
-                   }}/>
+      <TagsSection value={selected.tags}
+                   onChange={(tags) => onChange({tags: tags})}/>
       <NoteSection value={selected.note}
-                   onChange={(note)=>{
-                     setSelected({
-                       ...selected,
-                       note: note
-                     })
-                   }}/>
+                   onChange={(note) => onChange({note: note})}/>
       <CategorySection
         value={selected.category}
-        onChange={(category)=>{
-          setSelected({
-            ...selected,
-            category: category
-          })
-        }}/>
+        onChange={(category) => onChange({category: category})}/>
       <NumberPadSection
         value={selected.amount}
-        onChange={(amount)=>{
-          setSelected({
-            ...selected,
-            amount: amount
-          })}}
-        onOk={()=>{}}
-      />
+        onChange={amount => onChange({amount: amount})}
+        onOk={() => {
+        }}/>
     </MyLayout>
   );
 }

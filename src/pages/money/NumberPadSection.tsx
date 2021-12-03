@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, {useState} from 'react';
+import React from 'react';
 import {generateOutput} from "pages/money/numberPadComponents/generateOutput";
 
 //数字键盘样式 css-in-jsx
