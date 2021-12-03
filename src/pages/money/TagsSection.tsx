@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import {useTags} from "../../useTags";
+import {createId} from "../../lib/createId";
 
 const Wrapper = styled.section`
   background: #fff;
@@ -45,14 +46,14 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
 
   const {tags, setTags} = useTags(); //传入tags数据 {id: number, name: string}
   const selectedTagIds = props.value;
-  //新增标签
+  // 新增标签
   const onAddTag =()=>{
     const name = window.prompt('新增的标签名为：');
     if (name !== null){
-      setTags([...tags, {id: Math.random(), name: name}]);
+      setTags([...tags, {id:createId(), name: name}]);
     }
   };
-
+  // 记录用户点击过的标签id，更改UI
   const onToggleTag=(tagId:number)=>{
     if(selectedTagIds.includes(tagId)){
       props.onChange(selectedTagIds.filter(val=>val!==tagId));
@@ -66,7 +67,7 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
       <ul>
         {tags.map(tag=><li key={tag.id} onClick={
           ()=>onToggleTag(tag.id)
-        } className={selectedTagIds.includes(tag.id)?'selected':''}>{tag.name}</li>)}
+        } className={selectedTagIds.includes(tag.id)?'selected':''}>{tag.id}{tag.name}</li>)}
       </ul>
       <button onClick={onAddTag} >新增标签</button>
     </Wrapper>
