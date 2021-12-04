@@ -4,6 +4,7 @@ import {useTags} from "../useTags";
 import styled from "styled-components";
 import {Icon} from "../components/Icon";
 import {Link} from "react-router-dom";
+import {Button} from "../components/Button";
 
 const StyledList = styled.ul`
   font-size: 16px;
@@ -24,7 +25,7 @@ const StyledList = styled.ul`
     }
   }
 `;
-const Button = styled.button`
+const LayoutButton = styled(Button)`
   font-size: 18px;
   border: none;
   padding: 8px 16px;
@@ -53,7 +54,7 @@ function Tags() {
           </li>
         )}
       </StyledList>
-      <Button>新增标签</Button>
+      <LayoutButton>新增标签</LayoutButton>
     </Layout>
   );
 }

@@ -67,7 +67,7 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
       <ul>
         {tags.map(tag=><li key={tag.id} onClick={
           ()=>onToggleTag(tag.id)
-        } className={selectedTagIds.includes(tag.id)?'selected':''}>{tag.id}{tag.name}</li>)}
+        } className={selectedTagIds.includes(tag.id)?'selected':''}>{tag.name}</li>)}
       </ul>
       <button onClick={onAddTag} >新增标签</button>
     </Wrapper>
