@@ -24,7 +24,6 @@ function useTags() {
   })
   useEffect(() => {
     if (count.current > 1) {
-      console.log('set Item')
       window.localStorage.setItem('tags', JSON.stringify(tags))
     }
   }, [tags]);

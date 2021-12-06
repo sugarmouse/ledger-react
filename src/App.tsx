@@ -5,7 +5,7 @@ import Statistics from "pages/Statistics";
 import {Tags} from "pages/Tags";
 import NotMatch from "pages/NotMatch";
 import styled from "styled-components";
-import {EditTag} from "./pages/EidtTag";
+import {EditTag} from "pages/EidtTag";
 
 const AppWrapper = styled.div`
   color: #333;

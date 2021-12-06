@@ -1,11 +1,11 @@
 import React from "react";
 import {useParams, useHistory} from "react-router-dom";
 import {useTags} from "hooks/useTags";
-import Layout from "../components/Layout";
-import {Icon} from "../components/Icon";
-import {BottomButton} from "../components/BottomButton";
+import Layout from "components/Layout";
+import {Icon} from "components/Icon";
+import {BottomButton} from "components/BottomButton";
 import styled from "styled-components";
-import {Input} from "../components/Input";
+import {Input} from "components/Input";
 
 const InputWrapper = styled.div`
   background: #fff;

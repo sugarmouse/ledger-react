@@ -1,11 +1,11 @@
 import Layout from "components/Layout";
 import styled from "styled-components";
-import {CategorySection} from "./money/CategorySection";
-import {NoteSection} from "./money/NoteSection";
-import {NumberPadSection} from "./money/NumberPadSection";
-import {TagsSection} from "./money/TagsSection";
+import {CategorySection} from "pages/money/CategorySection";
+import {NoteSection} from "pages/money/NoteSection";
+import {NumberPadSection} from "pages/money/NumberPadSection";
+import {TagsSection} from "pages/money/TagsSection";
 import {useState} from "react";
-import {useRecords} from "../hooks/useRecords";
+import {useRecords} from "hooks/useRecords";
 
 
 const MyLayout = styled(Layout)`
@@ -41,6 +41,7 @@ function Money() {
       category: selected.category,
       amount: parseFloat(selected.amount)
     }
+
     if(addRecord(copySelected)){
       // todo 修改提示UI
       alert('提交成功');
