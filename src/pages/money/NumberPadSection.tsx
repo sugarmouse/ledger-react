@@ -79,22 +79,22 @@ const Wrapper = styled.section`
   }
 `;
 type Props = {
-  value: number;
-  onChange: (value: number) => void;
+  value: string;
+  onChange: (value: string) => void;
   onOk?: () => void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
   const output = props.value.toString();
-  let value
+  let tempValue:string
   const setOutput = (output: string) => {
     if (output.length > 16) {
-      value = parseFloat(output.slice(0, 16));
+      tempValue = output.slice(0, 16);
     } else if (output.length === 0) {
-      value = 0;
+      tempValue = '0';
     } else {
-      value = parseFloat(output)
+      tempValue = output
     }
-    props.onChange(value)
+    props.onChange(tempValue)
   }
   // 定义键盘按钮行为
   const onClickButtonWrap = (e: React.MouseEvent) => {

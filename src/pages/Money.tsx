@@ -21,13 +21,13 @@ function Money() {
     tagIds: [] as number[],
     note: '',
     category: '-' as Category,
-    amount: 0
+    amount: '0' as string
   }
 
 
   const [selected, setSelected] = useState(defaultSelected)
 
-  function onChange(obj: Partial<typeof selected>) {
+  function updateSelected(obj: Partial<typeof selected>) {
     setSelected({
       ...selected,
       ...obj
@@ -35,7 +35,13 @@ function Money() {
   }
 
   const submit =()=>{
-    if(addRecord(selected)){
+    const copySelected = {
+      tagIds: selected.tagIds,
+      note: selected.note,
+      category: selected.category,
+      amount: parseFloat(selected.amount)
+    }
+    if(addRecord(copySelected)){
       // todo 修改提示UI
       alert('提交成功');
       setSelected(defaultSelected);
@@ -45,15 +51,15 @@ function Money() {
   return (
     <MyLayout>
       <TagsSection value={selected.tagIds}
-                   onChange={(tagIds) => onChange({tagIds: tagIds})}/>
+                   onChange={(tagIds) => updateSelected({tagIds: tagIds})}/>
       <NoteSection value={selected.note}
-                   onChange={(note) => onChange({note: note})}/>
+                   onChange={(note) => updateSelected({note: note})}/>
       <CategorySection
         value={selected.category}
-        onChange={(category) => onChange({category: category})}/>
+        onChange={(category) => updateSelected({category: category})}/>
       <NumberPadSection
         value={selected.amount}
-        onChange={amount => onChange({amount: amount})}
+        onChange={(amount) => updateSelected({amount: amount})}
         onOk={()=>{submit()}}/>
     </MyLayout>
   );
