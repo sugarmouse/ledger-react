@@ -1,4 +1,4 @@
-import Nav from "components/Nav";
+import {Nav} from "components/Nav";
 import React from "react";
 import styled from "styled-components";
 

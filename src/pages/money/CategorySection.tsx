@@ -4,8 +4,6 @@ import React, {useState} from "react";
 const Wrapper = styled.section`
   > ul {
     display: flex;
-    background: #c4c4c4;
-
     > li {
       padding: 16px;
       width: 50%;
@@ -37,7 +35,7 @@ const CategorySection: React.FC<Props> = (props) => {
 
   return (
     <Wrapper>
-      <ul>
+      <ul >
         {categoryList.map(c =>
           <li
             key={c}

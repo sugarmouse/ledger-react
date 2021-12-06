@@ -12,6 +12,9 @@ const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 `;
+const CategoryWrapper = styled.div`
+  background: #c4c4c4;
+`;
 
 function Money() {
   const {addRecord} = useRecords()
@@ -55,9 +58,11 @@ function Money() {
                    onChange={(tagIds) => updateSelected({tagIds: tagIds})}/>
       <NoteSection value={selected.note}
                    onChange={(note) => updateSelected({note: note})}/>
-      <CategorySection
-        value={selected.category}
-        onChange={(category) => updateSelected({category: category})}/>
+      <CategoryWrapper>
+        <CategorySection
+          value={selected.category}
+          onChange={(category) => updateSelected({category: category})}/>
+      </CategoryWrapper>
       <NumberPadSection
         value={selected.amount}
         onChange={(amount) => updateSelected({amount: amount})}
