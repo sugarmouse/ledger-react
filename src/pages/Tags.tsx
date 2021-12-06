@@ -29,8 +29,8 @@ const StyledList = styled.ul`
 
 function Tags() {
 
-// eslint-disable-next-line
   const {tags,addTag} = useTags()
+
   return (
     <Layout>
       <StyledList>

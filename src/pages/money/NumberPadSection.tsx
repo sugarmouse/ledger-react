@@ -96,14 +96,12 @@ const NumberPadSection: React.FC<Props> = (props) => {
     }
     props.onChange(value)
   }
+  // 定义键盘按钮行为
   const onClickButtonWrap = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) return;
-    if (text === 'ok') {
-      // submit todo
-      if (props.onOk) {
-        props.onOk();
-      }
+    if (text === 'OK') {
+      if (props.onOk) props.onOk();
     }
     const TextType = '0123456789.'.split('').concat(['删除', '清空'])
     if (TextType.includes(text)) {

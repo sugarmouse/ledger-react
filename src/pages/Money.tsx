@@ -5,6 +5,7 @@ import {NoteSection} from "./money/NoteSection";
 import {NumberPadSection} from "./money/NumberPadSection";
 import {TagsSection} from "./money/TagsSection";
 import {useState} from "react";
+import {useRecords} from "../hooks/useRecords";
 
 
 const MyLayout = styled(Layout)`
@@ -12,16 +13,19 @@ const MyLayout = styled(Layout)`
   flex-direction: column;
 `;
 
-
 function Money() {
+  const {addRecord} = useRecords()
 
   type Category = '-' | '+';
-  const [selected, setSelected] = useState({
+  const defaultSelected = {
     tagIds: [] as number[],
     note: '',
     category: '-' as Category,
     amount: 0
-  })
+  }
+
+
+  const [selected, setSelected] = useState(defaultSelected)
 
   function onChange(obj: Partial<typeof selected>) {
     setSelected({
@@ -29,6 +33,14 @@ function Money() {
       ...obj
     })
   }
+
+  const submit =()=>{
+    if(addRecord(selected)){
+      // todo 修改提示UI
+      alert('提交成功');
+      setSelected(defaultSelected);
+    }
+  };
 
   return (
     <MyLayout>
@@ -42,8 +54,7 @@ function Money() {
       <NumberPadSection
         value={selected.amount}
         onChange={amount => onChange({amount: amount})}
-        onOk={() => {
-        }}/>
+        onOk={()=>{submit()}}/>
     </MyLayout>
   );
 }
