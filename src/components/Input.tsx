@@ -12,7 +12,7 @@ const Label:React.FC = styled.label`
   > input {
     display: block;
     flex-grow: 1;
-    height: 72px;
+    height: 44px;
     border: none;
     background: none;
   }

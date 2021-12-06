@@ -1,10 +1,10 @@
 import Layout from "../components/Layout";
 import React from "react";
-import {useTags} from "../useTags";
+import {useTags} from "../hooks/useTags";
 import styled from "styled-components";
 import {Icon} from "../components/Icon";
 import {Link} from "react-router-dom";
-import {Button} from "../components/Button";
+import {BottomButton} from "../components/BottomButton";
 
 const StyledList = styled.ul`
   font-size: 16px;
@@ -25,23 +25,12 @@ const StyledList = styled.ul`
     }
   }
 `;
-const LayoutButton = styled(Button)`
-  font-size: 18px;
-  border: none;
-  padding: 8px 16px;
-  background: #767676;
-  border-radius: 4px;
-  color: white;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 20%;
-`;
+
 
 function Tags() {
 
 // eslint-disable-next-line
-  const {tags, setTags} = useTags()
+  const {tags,addTag} = useTags()
   return (
     <Layout>
       <StyledList>
@@ -54,7 +43,7 @@ function Tags() {
           </li>
         )}
       </StyledList>
-      <LayoutButton>新增标签</LayoutButton>
+      <BottomButton onClick={addTag}>新增标签</BottomButton>
     </Layout>
   );
 }

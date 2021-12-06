@@ -1,7 +1,7 @@
-let i = 0;
+let i = parseInt(localStorage.getItem('maxId') || '0')
 const createId = ()=>{
   i+=1
-  console.log(i)
+  window.localStorage.setItem('maxId',JSON.stringify(i));
   return i
 }
 

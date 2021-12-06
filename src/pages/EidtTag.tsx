@@ -1,12 +1,19 @@
 import React from "react";
-import {useParams} from "react-router-dom";
-import {useTags} from "useTags";
+import {useParams, useHistory} from "react-router-dom";
+import {useTags} from "hooks/useTags";
 import Layout from "../components/Layout";
 import {Icon} from "../components/Icon";
-import {Button} from "../components/Button";
+import {BottomButton} from "../components/BottomButton";
 import styled from "styled-components";
+import {Input} from "../components/Input";
 
-type Params ={
+const InputWrapper = styled.div`
+  background: #fff;
+  padding: 0 16px;
+  margin-top: 8px;
+`;
+
+type Params = {
   id: string;
 }
 const Topbar = styled.header`
@@ -18,29 +25,42 @@ const Topbar = styled.header`
   background: #fff;
 `;
 const EditTag: React.FC = () => {
-  const { findTag } = useTags()
-  let {id} = useParams<Params>();
-  // eslint-disable-next-line
-  const tag =  findTag(id)
+  const {findTag, updateTag, deleteTag} = useTags()
+  let {id: idString} = useParams<Params>();
+  const tag = findTag(idString);
 
+
+  const tagExist = (tag: { id: number, name: string }) => {
+    return (
+      <div>
+        <InputWrapper>
+          <Input type='text' label='标签名' placeholder='标签名'
+                 value={tag.name}
+                 onChange={(e) => {
+                   updateTag(tag.id, {name: e.target.value})
+                 }}/>
+        </InputWrapper>
+        <div>
+          <BottomButton onClick={() => {
+            deleteTag(tag.id)
+          }}>删除标签</BottomButton>
+        </div>
+      </div>
+    );
+  }
+
+  const history = useHistory()
+  const onClickBack = () => {
+    history.goBack()
+  }
   return (
     <Layout>
       <Topbar>
-        <Icon name='left'/>
+        <Icon name='left' onClick={onClickBack}/>
         <span>编辑标签</span>
         <Icon/>
       </Topbar>
-      <h1>{tag.name}</h1>
-      <div>
-        <label htmlFor=" ">
-          <span>标签名</span>
-          <input type='text' placeholder="标签名"/>
-        </label>
-      </div>
-      <div>
-        <Button>删除标签</Button>
-      </div>
-
+      {tag ? tagExist(tag) : <h1>此标签已删除</h1>}
     </Layout>
   )
 }
