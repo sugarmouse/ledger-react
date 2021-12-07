@@ -33,7 +33,7 @@ function useTags() {
   // 封装的useUpdate 排除了 tags: undefined-> [] 变化时，localStorage 的setItem 操作
   useUpdate(() => {
     window.localStorage.setItem('tags', JSON.stringify(tags))
-  }, [tags])
+  }, tags)
 
   const createTagId = () => {
     let i = parseInt(localStorage.getItem('maxId') || '0')
