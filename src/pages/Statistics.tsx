@@ -31,6 +31,7 @@ const Header = styled.h3`
 `;
 
 function Statistics() {
+  // todo 最近三天以 '今天' '昨天' '前天' 展示
   const {records} = useRecords()
   const {getTagName} = useTags()
   const [category, setCategory] = useState<'-' | '+'>('-')

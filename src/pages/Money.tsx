@@ -7,7 +7,7 @@ import {TagsSection} from "pages/money/TagsSection";
 import React, {useState} from "react";
 import {useRecords} from "hooks/useRecords";
 
-// todo 页面标签过多时，限制标签展示高度，出先滚动条
+// todo 页面标签过多时，限制标签展示高度，出现滚动条
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
