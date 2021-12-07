@@ -2,6 +2,7 @@
   "name": "ledger",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sugarmouse.github.io/ledger-website/",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
@@ -80,7 +81,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "push": "yarn build;cd build;git init;git add .;git commit -m \"deploy\";git remote add origin git@github.com:sugarmouse/ledger-website.git;git push -u origin main -f;cd .."
   },
   "eslintConfig": {
     "extends": [

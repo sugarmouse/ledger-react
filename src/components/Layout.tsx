@@ -16,7 +16,7 @@ const Main = styled.div`
 const Layout = (props: any)=>{
   return (
     <Wrapper>
-      <Main className={props.className}>
+      <Main className={props.className} data-x={'唐浩'}>
         {props.children}
       </Main>
       <Nav/>

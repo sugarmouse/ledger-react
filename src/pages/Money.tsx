@@ -4,10 +4,10 @@ import {CategorySection} from "pages/money/CategorySection";
 import {NoteSection} from "pages/money/NoteSection";
 import {NumberPadSection} from "pages/money/NumberPadSection";
 import {TagsSection} from "pages/money/TagsSection";
-import {useState} from "react";
+import React, {useState} from "react";
 import {useRecords} from "hooks/useRecords";
 
-
+// todo 页面标签过多时，限制标签展示高度，出先滚动条
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@ const CategoryWrapper = styled.div`
   background: #c4c4c4;
 `;
 
-function Money() {
+const Money: React.FC = () => {
   const {addRecord} = useRecords()
 
   type Category = '-' | '+';
@@ -37,15 +37,14 @@ function Money() {
     })
   }
 
-  const submit =()=>{
+  const submit = () => {
     const copySelected = {
       tagIds: selected.tagIds,
       note: selected.note,
       category: selected.category,
       amount: parseFloat(selected.amount)
     }
-
-    if(addRecord(copySelected)){
+    if (addRecord(copySelected)) {
       // todo 修改提示UI
       alert('提交成功');
       setSelected(defaultSelected);
@@ -66,7 +65,9 @@ function Money() {
       <NumberPadSection
         value={selected.amount}
         onChange={(amount) => updateSelected({amount: amount})}
-        onOk={()=>{submit()}}/>
+        onOk={() => {
+          submit()
+        }}/>
     </MyLayout>
   );
 }
