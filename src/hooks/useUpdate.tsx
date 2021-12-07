@@ -10,6 +10,6 @@ const useUpdate = (fn:()=>void,dependency:any[])=>{
     if(count.current > 1){
       fn()
     }
-  }, [dependency]);
+  }, [fn,dependency]);
 }
 export {useUpdate}
