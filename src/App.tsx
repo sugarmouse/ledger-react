@@ -1,11 +1,12 @@
 import {HashRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import React from 'react';
-import Money from "pages/Money";
-import Statistics from "pages/Statistics";
+import {Money} from "pages/Money";
+import {Statistics} from "pages/Statistics";
 import {Tags} from "pages/Tags";
 import NotMatch from "pages/NotMatch";
 import styled from "styled-components";
 import {EditTag} from "pages/EidtTag";
+import {Details} from "pages/Details";
 
 const AppWrapper = styled.div`
   color: #333;
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/money">
             <Money/>
+          </Route>
+          <Route path="/details">
+            <Details/>
           </Route>
           <Route path="/statistics">
             <Statistics/>

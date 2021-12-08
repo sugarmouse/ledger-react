@@ -2,10 +2,14 @@ import styled from "styled-components";
 import React, {ChangeEventHandler} from "react";
 import {Input} from "../../components/Input";
 
+
 const Wrapper = styled.section`
   background: #f5f5f5;
-  padding: 14px  16px; 
+  padding: 12px  16px; 
   font-size: 14px;
+  @media(max-height: 600px){
+    padding: 8px  16px;
+  }
 `;
 type Props= {
   value: string;

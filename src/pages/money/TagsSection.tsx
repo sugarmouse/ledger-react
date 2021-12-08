@@ -10,9 +10,12 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-
+  flex-shrink: 1;
+  overflow: scroll;
+  
   > ul {
     margin: 0 -12px;
+    overflow: auto;
 
     > li {
       background: #D9D9D9;
@@ -23,6 +26,9 @@ const Wrapper = styled.section`
       margin: 8px 12px;
       &.selected{
         background: darkolivegreen;
+      }
+      @media(max-height: 600px){
+        font-size: 12px;
       }
     }
   }

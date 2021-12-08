@@ -1,4 +1,4 @@
-import Layout from "components/Layout";
+import {Layout} from "components/Layout";
 import React from "react";
 import {useTags} from "hooks/useTags";
 import styled from "styled-components";

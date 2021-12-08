@@ -1,4 +1,4 @@
-import Layout from "components/Layout";
+import {Layout} from "components/Layout";
 import styled from "styled-components";
 import {CategorySection} from "pages/money/CategorySection";
 import {NoteSection} from "pages/money/NoteSection";
@@ -8,15 +8,16 @@ import React, {useState} from "react";
 import {useRecords} from "hooks/useRecords";
 
 // todo 页面标签过多时，限制标签展示高度，出现滚动条
+const CategoryWrapper = styled.div`
+  background: #c4c4c4;
+`;
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 `;
-const CategoryWrapper = styled.div`
-  background: #c4c4c4;
-`;
 
 const Money: React.FC = () => {
+
   const {addRecord} = useRecords()
 
   type Category = '-' | '+';
@@ -72,4 +73,4 @@ const Money: React.FC = () => {
   );
 }
 
-export default Money;
+export{ Money} ;

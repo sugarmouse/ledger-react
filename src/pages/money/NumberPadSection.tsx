@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from 'react';
 import {generateOutput} from "pages/money/numberPadComponents/generateOutput";
 
-//数字键盘样式 css-in-jsx
+
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -10,14 +10,12 @@ const Wrapper = styled.section`
   > output {
     background: #fff;
     padding: 0 16px;
-    font-size: 36px;
+    font-size: 34px;
     text-align: right;
-    line-height: 72px;
+    line-height: 60px;
     overflow: scroll;
     box-shadow: inset 0 -5px  5px -5px rgba(0, 0, 0, 0.25), 0 5px  5px -5px rgba(0, 0, 0, 0.25);
-
   }
-
   > .pad {
     > button {
       height: 64px;
@@ -27,7 +25,7 @@ const Wrapper = styled.section`
       border: none;
 
       &.ok {
-        height: calc(64px * 2);
+        height: 128px;
         float: right;
       }
 
@@ -77,6 +75,20 @@ const Wrapper = styled.section`
       }
     }
   }
+  @media(max-height: 600px){
+    > output{
+      font-size: 30px;
+    }
+    >.pad{
+      > button{
+        height: 44px;
+        &.ok{
+          height: 88px;
+        }
+      }
+    }
+  }
+  
 `;
 type Props = {
   value: string;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, {useState} from "react";
 
+
 const Wrapper = styled.section`
   > ul {
     display: flex;
@@ -22,7 +23,15 @@ const Wrapper = styled.section`
         left: 0;
       }
     }
+    @media(max-height: 600px){
+      >li{
+        padding: 10px 16px;
+        font-size: 22px;
+
+      }
+    }
   }
+  
 `;
 type Props = {
   value: '-'|'+';
