@@ -7,7 +7,6 @@ import {BottomButton} from "components/BottomButton";
 import styled from "styled-components";
 import {Input} from "components/Input";
 
-// todo 限制页面标签的展示高度，给个滚动条
 const InputWrapper = styled.div`
   background: #fff;
   padding: 0 16px;

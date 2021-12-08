@@ -1,33 +1,48 @@
-import Layout from "components/Layout";
 import React, {useState} from "react";
 import {CategorySection} from "./money/CategorySection";
 import styled from "styled-components";
 import {NewRecordItem, useRecords} from "../hooks/useRecords";
 import {useTags} from "../hooks/useTags";
 import day from 'dayjs';
+import {Nav} from "../components/Nav";
 
-const CategoryWrapper = styled.div`
-  background: #fff;
-`;
-const Item = styled.div`
+
+const PageWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  background: #fff;
-  font-size: 18px;
-  line-height: 20px;
-  padding: 10px 16px;
-  > .note {
-    margin-right: auto;
-    margin-left: 16px;
-    font-size: 16px;
-    color:#999;
-  }
+  height: 100vh;
 `;
-const Header = styled.h3`
-  font-size: 18px;
-  line-height: 20px;
-  padding: 10px 16px;
+const HeaderWrapper = styled.div`
+  background: #fff;
+`;
+const RecordsList = styled.main`
+  margin:4px 4px auto 4px;
+  border-radius:10px ;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  overflow: scroll;
+   .listTitle {
+    font-size: 18px;
+    line-height: 20px;
+    padding: 10px 16px;
+  }
+   .listContent {
+    > .listItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      font-size: 18px;
+      line-height: 20px;
+      padding: 10px 16px;
+      > .note {
+        margin-right: auto;
+        margin-left: 16px;
+        font-size: 16px;
+        color:#999;
+      }
+    }
+  }
 `;
 
 function Statistics() {
@@ -54,19 +69,19 @@ function Statistics() {
   })
 
   return (
-    <Layout>
-      <CategoryWrapper>
+    <PageWrapper>
+      <HeaderWrapper >
         <CategorySection value={category} onChange={(category) => setCategory(category)}/>
-      </CategoryWrapper>
-      <main>
+      </HeaderWrapper>
+      <RecordsList>
         {array.map(([date,records]) =>
           <div key={date}>
-            <Header>
+            <h3 className='listTitle'>
               {date}
-            </Header>
+            </h3>
             <div className="listContent">
               {records.map(record=>
-                <Item key={record.createAt} className="list">
+                <div key={record.createAt} className="listItem">
                   <div className="tags">
                     {record.tagIds.map(id => <span key={id}>{getTagName(id)}</span>)}
                   </div>
@@ -74,14 +89,14 @@ function Statistics() {
                   <div className="amount">
                     {record.category==='-'?'-':''}{record.amount}
                   </div>
-                </Item>
+                </div>
               )}
             </div>
           </div>
         )}
-      </main>
-    </Layout>
-
+      </RecordsList>
+      <Nav/>
+    </PageWrapper>
   );
 }
 

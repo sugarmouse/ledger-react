@@ -10,7 +10,7 @@ const BottomButton = styled.button`
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 20%;
+  bottom: 14%;
 `;
 
 export {BottomButton};

@@ -10,6 +10,11 @@ const StyledList = styled.ul`
   font-size: 16px;
   background: white;
   padding: 0 12px;
+  max-height: 80%;
+  overflow: scroll;
+  margin:4px;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
 
   > li {
     border-bottom: 1px solid #d5d5d9;
