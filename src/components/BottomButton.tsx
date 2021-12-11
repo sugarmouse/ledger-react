@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 const BottomButton = styled.button`
   font-size: 18px;
   border: none;
@@ -7,7 +6,7 @@ const BottomButton = styled.button`
   background: #767676;
   border-radius: 4px;
   color: white;
-  position: fixed;
+  position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: 14%;

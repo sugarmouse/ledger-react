@@ -7,7 +7,6 @@ import {TagsSection} from "pages/money/TagsSection";
 import React, {useState} from "react";
 import {useRecords} from "hooks/useRecords";
 
-// todo 页面标签过多时，限制标签展示高度，出现滚动条
 const CategoryWrapper = styled.div`
   background: #c4c4c4;
 `;

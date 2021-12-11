@@ -1,26 +1,30 @@
 import React, {useState} from "react";
-import {CategorySection} from "./money/CategorySection";
+import {DetailsHead} from "./details/DetailsHead";
 import styled from "styled-components";
-import {NewRecordItem, useRecords} from "../hooks/useRecords";
+import { useRecords} from "../hooks/useRecords";
 import {useTags} from "../hooks/useTags";
-import day from 'dayjs';
+// import day from 'dayjs';
 import {Layout} from "../components/Layout";
+import {useDate} from "../hooks/useDate";
+// import {useRecordsFilter} from "./Detail/useRecordsProcess";
 
 
 const HeaderWrapper = styled.div`
   background: #fff;
 `;
 const RecordsList = styled.main`
-  margin:4px 4px auto 4px;
-  border-radius:10px ;
+  margin: 4px 4px auto 4px;
+  border-radius: 10px;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
   overflow: scroll;
-   .listTitle {
+
+  .listTitle {
     font-size: 18px;
     line-height: 20px;
     padding: 10px 16px;
   }
-   .listContent {
+
+  .listContent {
     > .listItem {
       display: flex;
       justify-content: space-between;
@@ -29,68 +33,54 @@ const RecordsList = styled.main`
       font-size: 18px;
       line-height: 20px;
       padding: 10px 16px;
+
       > .note {
         margin-right: auto;
         margin-left: 16px;
         font-size: 16px;
-        color:#999;
+        color: #999;
       }
     }
   }
 `;
 
 function Details() {
-  // todo 最近三天以 '今天' '昨天' '前天' 展示
-  const {records} = useRecords()
+  const {shownDate} = useDate()
+  const {categoryFilter} = useRecords()
   const {getTagName} = useTags()
-  const [category, setCategory] = useState<'-' | '+'>('-')
-  const selectedRecords = records.filter(r=>r.category === category)
-  const hash:{[K:string]:NewRecordItem[]} = {} //{'date':[item, item...],}
+  const [category, setCategory] = useState<'-' | '+'|'all'>('all')
 
-    selectedRecords.forEach(r =>{
-      const key  = day(r.createAt).format('YYYY年MM月DD日')
-      if (!(key in hash)){
-        hash[key] = []
-      }
-      hash[key].push(r)
-    })
-
-  const array = Object.entries(hash).sort((a,b)=>{
-    if(a[0]===b[0]) return 0;
-    if(a[0]> b[0]) return -1;
-    if(a[0]< b[0]) return 1;
-    return 0;
-  })
+  const array = categoryFilter(category)
 
   return (
-      <Layout header={<HeaderWrapper >
-        <CategorySection value={category} onChange={(category) => setCategory(category)}/>
-      </HeaderWrapper>}>
-        <RecordsList>
-          {array.map(([date,records]) =>
-            <div key={date}>
-              <h3 className='listTitle'>
-                {date}
-              </h3>
-              <div className="listContent">
-                {records.map(record=>
-                  <div key={record.createAt} className="listItem">
-                    <div className="tags">
-                      {record.tagIds.map(id => <span key={id}>{getTagName(id)}</span>)}
-                    </div>
-                    {record.note && <div className="note">{record.note}</div>}
-                    <div className="amount">
-                      {record.category==='-'?'-':''}{record.amount}
-                    </div>
+    <Layout header={<HeaderWrapper>
+      <DetailsHead value={category} onChange={(category) => setCategory(category)}/>
+    </HeaderWrapper>}>
+      <RecordsList>
+        {array.map(([date, records]) =>
+          <div key={date}>
+            <h3 className='listTitle'>
+              {shownDate(date)}
+            </h3>
+            <div className="listContent">
+              {records.map(record =>
+                <div key={record.createAt} className="listItem">
+                  <div className="tags">
+                    {record.tagIds.map(id => <span key={id}>{getTagName(id)}</span>)}
                   </div>
-                )}
-              </div>
+                  {record.note && <div className="note">{record.note}</div>}
+                  <div className="amount">
+                    {record.category === '-' ? '-' : ''}{record.amount}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-        </RecordsList>
-      </Layout>
+          </div>
+        )}
+      </RecordsList>
+    </Layout>
 
   );
 }
 
-export  {Details};
+export {Details};
