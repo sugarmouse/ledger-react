@@ -109,7 +109,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
     props.onChange(tempValue)
   }
   // 定义键盘按钮行为
-  const onClickButtonWrap = (e: React.MouseEvent) => {
+  const  onClickButtonWrap = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) return;
     if (text === 'OK') {
